@@ -7,7 +7,7 @@ from .utils import capture, save, ScreenshotComparator, wait
 def main() -> None:
     parser = argparse.ArgumentParser(description="Capture Kindle pages as images.")
     parser.add_argument("--title", type=str, default="title", help="Title for the output directory.")
-    parser.add_argument("--move", type=str, default="left", help="Direction key to move to the next page (e.g., 'left', 'right').")
+    parser.add_argument("--dirction", type=str, default="left", help="Direction key to move to the next page (e.g., 'left', 'right').")
     parser.add_argument("--max-same-count", type=int, default=2, help="Threshold for the number of consecutive identical screenshots before stopping.")
     args = parser.parse_args()
 
@@ -39,7 +39,7 @@ def main() -> None:
             print("Detected the same page multiple times. The process has completed successfully.")
             break
 
-        pyautogui.press(args.move)
+        pyautogui.press(args.dirction)
         time.sleep(0.1)
 
         page_number += 1
