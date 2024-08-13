@@ -6,7 +6,7 @@ from .utils import capture, save, ScreenshotComparator, wait
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Capture Kindle pages as images.")
-    parser.add_argument("--title", type=str, default="title", help="Title for the output directory.")
+    parser.add_argument("--title", type=str, required=True, help="Title for the output directory.")
     parser.add_argument("--dirction", type=str, default="left", help="Direction key to move to the next page (e.g., 'left', 'right').")
     parser.add_argument("--max-same-count", type=int, default=2, help="Threshold for the number of consecutive identical screenshots before stopping.")
     args = parser.parse_args()
