@@ -9,6 +9,7 @@ dependencies = [
     "pyautogui>=0.9.54",
     "pyobjc>=10.3.1",
     "types-pyautogui>=0.9.3.20240406",
+    "argparse>=1.4.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
