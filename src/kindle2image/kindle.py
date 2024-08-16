@@ -19,7 +19,7 @@ def get_kindle_window_position() -> Optional[tuple[int, int, int, int]]:
             height = bounds.get("Height")
 
             # Adjust y coordinate and height to exclude the menu bar
-            menu_bar_height = 80
+            menu_bar_height = 40
             adjusted_y = y + menu_bar_height
             adjusted_height = height - menu_bar_height
             return (int(x), int(adjusted_y), int(width), int(adjusted_height))
