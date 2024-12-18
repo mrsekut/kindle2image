@@ -1,0 +1,10 @@
+{
+	"terminal.integrated.profiles.osx": {
+		"devboxCompatibleShell": {
+			"path": "/bin/zsh",
+			"args": []
+		}
+	},
+	"terminal.integrated.defaultProfile.osx": "devboxCompatibleShell",
+	"haskell.serverExecutablePath": "${workspaceFolder}/.devbox/nix/profile/default/bin/haskell-language-server-9.6.6"
+}
