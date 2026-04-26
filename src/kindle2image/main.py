@@ -1,7 +1,11 @@
-import pyautogui
 import time
 import argparse
-from .kindle import get_kindle_window_position, is_kindle_active
+from .kindle import (
+    get_kindle_window_position,
+    is_kindle_active,
+    find_kindle_pid,
+    send_down_to_pid,
+)
 from .utils import capture, save, ScreenshotComparator, wait
 
 def main() -> None:
@@ -21,12 +25,18 @@ def main() -> None:
         print("Could not find the Kindle window. Please make sure it is open and visible.")
         return
 
+    pid = find_kindle_pid()
+    if pid is None:
+        print("Could not find the Kindle process.")
+        return
+    print(f"Kindle PID: {pid}. You can switch focus to other apps now.")
+
     page_number = 1
     comparator = ScreenshotComparator(args.max_same_count)
 
     while True:
-        if not is_kindle_active():
-            print("The process has ended because Kindle is no longer active.")
+        if find_kindle_pid() is None:
+            print("The process has ended because Kindle is no longer running.")
             break
 
         filename = f"{page_number}.png"
@@ -38,7 +48,7 @@ def main() -> None:
             print("Detected the same page multiple times. The process has completed successfully.")
             break
 
-        pyautogui.press("down")
+        send_down_to_pid(pid)
         time.sleep(0.1)
 
         page_number += 1
