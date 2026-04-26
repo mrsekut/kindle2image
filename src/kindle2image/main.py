@@ -1,7 +1,7 @@
 import time
 import argparse
 from .kindle import (
-    get_kindle_window_position,
+    find_kindle_window_id,
     is_kindle_active,
     find_kindle_pid,
     send_down_to_pid,
@@ -20,11 +20,6 @@ def main() -> None:
     print("Kindle is now active. Starting screenshot process...")
     time.sleep(3)
 
-    position = get_kindle_window_position()
-    if not position:
-        print("Could not find the Kindle window. Please make sure it is open and visible.")
-        return
-
     pid = find_kindle_pid()
     if pid is None:
         print("Could not find the Kindle process.")
@@ -39,8 +34,17 @@ def main() -> None:
             print("The process has ended because Kindle is no longer running.")
             break
 
+        window_id = find_kindle_window_id()
+        if window_id is None:
+            print("Could not find the Kindle window.")
+            break
+
+        screenshot = capture(window_id)
+        if screenshot is None:
+            print("Could not capture the Kindle window. Is it minimized?")
+            break
+
         filename = f"{page_number}.png"
-        screenshot = capture(position)
         save(screenshot, f"out/{args.title}", filename)
         print(f"Screenshot saved as {filename}.")
 

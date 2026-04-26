@@ -10,23 +10,11 @@ from Quartz import (
 
 DOWN_KEY_CODE = 125
 
-def get_kindle_window_position() -> Optional[tuple[int, int, int, int]]:
+def find_kindle_window_id() -> Optional[int]:
     window_list = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID)
-
     for window in window_list:
         if "Kindle" in window.get("kCGWindowOwnerName", ""):
-            bounds = window.get("kCGWindowBounds")
-
-            x = bounds.get("X")
-            y = bounds.get("Y")
-            width = bounds.get("Width")
-            height = bounds.get("Height")
-
-            # Adjust y coordinate and height to exclude the menu bar
-            menu_bar_height = 40
-            adjusted_y = y + menu_bar_height
-            adjusted_height = height - menu_bar_height
-            return (int(x), int(adjusted_y), int(width), int(adjusted_height))
+            return int(window.get("kCGWindowNumber"))
     return None
 
 

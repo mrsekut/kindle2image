@@ -1,9 +1,19 @@
+import io
 import os
-import pyautogui
 from typing import Callable
 import time
 from PIL import Image, ImageChops
 from typing import Optional
+from Quartz import (
+    CGWindowListCreateImage,
+    kCGWindowListOptionIncludingWindow,
+    kCGWindowImageBoundsIgnoreFraming,
+    CGRectNull,
+)
+from AppKit import NSBitmapImageRep
+
+NSPNGFileType = 4
+
 
 def wait(condition: Callable[[], bool], timeout: int) -> bool:
     start_time = time.time()
@@ -17,8 +27,18 @@ def wait(condition: Callable[[], bool], timeout: int) -> bool:
     return True
 
 
-def capture(region: tuple[int, int, int, int]) -> Image.Image:
-    return pyautogui.screenshot(region=region)
+def capture(window_id: int) -> Optional[Image.Image]:
+    cg_image = CGWindowListCreateImage(
+        CGRectNull,
+        kCGWindowListOptionIncludingWindow,
+        window_id,
+        kCGWindowImageBoundsIgnoreFraming,
+    )
+    if cg_image is None:
+        return None
+    rep = NSBitmapImageRep.alloc().initWithCGImage_(cg_image)
+    png_data = rep.representationUsingType_properties_(NSPNGFileType, None)
+    return Image.open(io.BytesIO(bytes(png_data))).copy()
 
 
 def save(image: Image.Image, dir: str, filename: str) -> None:
