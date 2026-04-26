@@ -44,6 +44,7 @@ pyobjc-core==10.3.1
     # via pyobjc-framework-avkit
     # via pyobjc-framework-avrouting
     # via pyobjc-framework-backgroundassets
+    # via pyobjc-framework-browserenginekit
     # via pyobjc-framework-businesschat
     # via pyobjc-framework-callkit
     # via pyobjc-framework-cfnetwork
@@ -210,6 +211,8 @@ pyobjc-framework-avrouting==10.3.1
     # via pyobjc
 pyobjc-framework-backgroundassets==10.3.1
     # via pyobjc
+pyobjc-framework-browserenginekit==10.3.1
+    # via pyobjc
 pyobjc-framework-businesschat==10.3.1
     # via pyobjc
 pyobjc-framework-callkit==10.3.1
@@ -241,6 +244,7 @@ pyobjc-framework-cocoa==10.3.1
     # via pyobjc-framework-avkit
     # via pyobjc-framework-avrouting
     # via pyobjc-framework-backgroundassets
+    # via pyobjc-framework-browserenginekit
     # via pyobjc-framework-businesschat
     # via pyobjc-framework-callkit
     # via pyobjc-framework-cfnetwork
@@ -367,6 +371,7 @@ pyobjc-framework-contactsui==10.3.1
 pyobjc-framework-coreaudio==10.3.1
     # via pyobjc
     # via pyobjc-framework-avfoundation
+    # via pyobjc-framework-browserenginekit
     # via pyobjc-framework-coreaudiokit
 pyobjc-framework-coreaudiokit==10.3.1
     # via pyobjc
@@ -385,6 +390,7 @@ pyobjc-framework-corelocation==10.3.1
 pyobjc-framework-coremedia==10.3.1
     # via pyobjc
     # via pyobjc-framework-avfoundation
+    # via pyobjc-framework-browserenginekit
     # via pyobjc-framework-cinematic
     # via pyobjc-framework-oslog
     # via pyobjc-framework-screencapturekit
@@ -560,6 +566,7 @@ pyobjc-framework-quartz==10.3.1
     # via pyobjc-framework-applicationservices
     # via pyobjc-framework-avfoundation
     # via pyobjc-framework-avkit
+    # via pyobjc-framework-browserenginekit
     # via pyobjc-framework-coretext
     # via pyobjc-framework-gamekit
     # via pyobjc-framework-linkpresentation
