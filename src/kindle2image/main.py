@@ -53,7 +53,7 @@ def main() -> None:
             break
 
         send_down_to_pid(pid)
-        time.sleep(0.1)
+        time.sleep(0.3)
 
         page_number += 1
 
